@@ -17,7 +17,7 @@ using namespace std;
 struct Nodo{
 	int valor;
 	Nodo *siguiente;
-}
+};
 
 //metodos
 void insertarPila(Nodo *&, int);
@@ -79,13 +79,52 @@ int main(){
 				}
 				break;
 			default:
-				cout<<"La opcion no existe\n"enld;
+				cout<<"La opcion no existe\n";
 									
 		}
 	}
 	return 0;
 	
 }
+
+
+//push
+void insertarPila(Nodo *&pila, int v){
+	//crear el nodo
+	Nodo *pushpila = new Nodo();
+	pushpila -> valor = v;
+	pushpila->siguiente = pila;
+	pila=pushpila;
+}
+
+//mostrar
+void mostrarPila(Nodo *&pila){
+	//necesito un auxiliar para mostrar
+	//los valores
+	Nodo *aux;
+	if(pila==NULL){
+		cout<<"No hay datos en la pila, esta vacia\n ";
+	}else{
+		aux = pila;
+		while(aux!=NULL){
+			cout<<"Valor: "<<aux->valor<<endl;
+			aux=aux->siguiente;
+		}
+	}
+}
+
+
+//pop
+void eliminarPila(Nodo *&pila, int &v){
+	Nodo * aux = pila;
+	v = aux->valor;
+	pila = aux->siguiente;
+	delete aux;
+}
+
+
+
+
 
 
 
