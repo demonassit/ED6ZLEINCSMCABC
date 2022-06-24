@@ -24,7 +24,7 @@ struct Nodo{
 //metodos
 void menu();
 void agregarDatos(ICO &);
-void insertarDatos(Nodo *&, Nodo *&, ICO);
+void insertarDatos(Nodo *&,Nodo *&,ICO);
 bool c_vacia(Nodo *);
 
 int main(){
@@ -86,7 +86,7 @@ void agregarDatos(ICO &alumnos){
 	cin>>alumnos.calificacion;
 }
 
-void insertarDatos(Nodo *frente, Nodo *fin, ICO alumnos){
+void insertarDatos(Nodo *&frente, Nodo *&fin,ICO alumnos){
 	//declaro mi nuevo nodo
 	Nodo *n_nodo = new Nodo();
 	
