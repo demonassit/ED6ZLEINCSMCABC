@@ -4,7 +4,7 @@ Vamos a crear un grafo que tiene los siguientes nodos
 5 3
 1 2
 2 3
-4 5
+4 5  FUERA DE LA MATRIZ
 
 */
 
@@ -21,7 +21,7 @@ Vamos a crear un grafo que tiene los siguientes nodos
 
 using namespace std;
 
-#define MAX 10001;
+#define MAX 10001
 
 vector<int> ady[MAX];
 
@@ -57,6 +57,7 @@ int main(){
 	//variables para el grafo
 	int V, E, u, v;
 	
+	printf("Hola escribe algo\n");
 	//elementos para la memoria
 	scanf("%d, %d", &V, &E);
 	
@@ -85,7 +86,7 @@ int main(){
 	//tenemos que recorrer todos los caminos
 	//posibles de cada nodo
 	
-	for(int i = 1; i<=V, ++i){
+	for(int i = 1; i<=V; ++i){
 		if(!visitado[i]){
 			memset(visitado_componente, 0, sizeof(visitado_componente));
 			dfs(i);
