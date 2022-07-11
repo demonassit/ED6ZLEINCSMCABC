@@ -86,7 +86,7 @@ int main(){
 	//tenemos que recorrer todos los caminos
 	//posibles de cada nodo
 	
-	for(int i = 1; i<=V; ++i){
+	for(int i = 1; i<=V; ++ i){
 		if(!visitado[i]){
 			memset(visitado_componente, 0, sizeof(visitado_componente));
 			dfs(i);
