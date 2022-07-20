@@ -1,6 +1,6 @@
 #include <iostream>
-#include <queue>
-#include <stack>
+#include <queue> //cola
+#include <stack> //pila
 
 /*
 vamos a crear un grafo que pueda determinar la 
@@ -34,9 +34,9 @@ class Grafo{
 			visitado = new int[vertice];
 		}
 		
-		void vistados(){
+		void visitados(){
 			for(int i = 0; i < vertice; i++){
-				vistado[i] = 0;
+				visitado[i] = 0;
 			}
 		}
 		
@@ -77,7 +77,94 @@ class Grafo{
 			if(i >= 0 && i < vertice && j > 0 && j < vertice){
 				return adyMatriz[i][j];
 			}else{
-				return false;
+				return false; 
+			}
+		}
+		
+		void profundidad(int nodo){
+			visitado[nodo] = 1;
+			cout<<nodo<<"  ";
+			//recorrer los nodos visitados
+			for(int i = 0; i < vertice; i++){
+				if(adyMatriz[nodo][i] && !visitado[i]){
+					profundidad(i);
+				}
+			}
+		}
+		
+		void profundidadI(int nodo){
+			visitados();
+			//ahora necesito mi pila
+			stack<int> pila;
+			pila.push(nodo);
+			visitado[nodo] = 1;
+			
+			//mientras la pila no este vacia debo 
+			//recorrer los elementos
+			while(!pila.empty()){
+				int elemento = pila.top();
+				//lo saco
+				pila.pop();
+				cout<<elemento<<" ";
+				
+				for(int i = 0; i < vertice; i++){
+					if(adyMatriz[elemento][i]){
+						if(!visitado[i]){
+							pila.push(i);
+						}
+						visitado[i] = 1;
+					}
+				}
+			}
+			
+		}
+		
+		void anchura(int nodo){
+			visitados();
+			visitado[nodo] = 1;
+			
+			//necesito a la cola
+			queue<int> cola;
+			cola.push(nodo);
+			
+			while(!cola.empty()){
+				int elemento = cola.front();
+				cola.pop();
+				cout<<elemento<<" ";
+				for(int i = 0; i < vertice; i++){
+					if(adyMatriz[elemento][i] && !visitado[i]){
+						cola.push(i);
+					}
+					visitado[i] = 1;
+				}
 			}
 		}
 };
+
+int main(){
+	int ver, arc;
+	cout<<"Numero de vertices: \n";
+	cin>>ver;
+	cout<<"Numero de aristas: \n";
+	cin>>arc;
+	
+	//al grafo
+	Grafo gh(ver, arc);
+	
+	cout<<"Creacion del grafo \n";
+	gh.crear_grafo();
+	
+	cout<<"Busqueda en anchura \n";
+	gh.anchura(0);
+	cout<<endl;
+	
+	cout<<"busqueda en profundidad: \n";
+	gh.visitados();
+	cout<<endl;
+	gh.profundidad(0);
+	cout<<endl;
+	gh.profundidadI(0);
+	cout<<endl;
+	
+	
+}
